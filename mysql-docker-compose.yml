@@ -1,0 +1,16 @@
+version: '3.8' # You can adjust the version as needed
+
+services:
+  mysql:
+    image: mysql:8 # Use the official MySQL 8 image from Docker Hub
+    container_name: mysql8 # Name your container (optional but recommended)
+    restart: always # Restart the container automatically if it crashes
+    environment:
+      MYSQL_ROOT_PASSWORD: admin # Replace with your desired MySQL root password
+      MYSQL_DATABASE: db # Replace with your desired database name
+    ports:
+      - "3306:3306" # Map the host port to the container port (left: host, right: container)
+    command: --bind-address=0.0.0.0 # Listen on all available interfaces (important for external access)
+    volumes:
+      - ./data:/var/lib/mysql # Optional: Mount a local directory for persistent data storage
+
